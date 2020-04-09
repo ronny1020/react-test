@@ -1,26 +1,32 @@
 import React from 'react'
-import logo from './logo.svg'
-import './App.css'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  )
+import HelloWorldFunc from './components/HelloWorldFunc'
+import HelloWorldClass from './components/HelloWorldClass'
+import HelloWorldText from './components/HelloWorldText'
+
+class App extends React.Component {
+  constructor() {
+    super()
+    this.state = {
+      textNow: '',
+    }
+  }
+
+  // 為了要綁定this值，用類似箭頭函式的寫法
+  // 專門設計給子女元件，送資料到父母元件
+  sendDataToMe = (value) => {
+    this.setState({ textNow: value })
+  }
+
+  render() {
+    return (
+      <>
+        <HelloWorldClass sendMe={this.sendDataToMe} />
+        <HelloWorldFunc sendMe={this.sendDataToMe} />
+        <HelloWorldText text={this.state.textNow} />
+      </>
+    )
+  }
 }
 
 export default App
