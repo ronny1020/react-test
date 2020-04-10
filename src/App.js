@@ -1,32 +1,20 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
+//import { Container, Row, Col, Button, Carousel } from 'react-bootstrap'
+import { FaReact } from 'react-icons/fa'
+import { Button } from 'react-bootstrap'
+import { GiSwordman } from 'react-icons/gi'
+import './styles/custom.scss'
 
-import HelloWorldFunc from './components/HelloWorldFunc'
-import HelloWorldClass from './components/HelloWorldClass'
-import HelloWorldText from './components/HelloWorldText'
-
-class App extends React.Component {
-  constructor() {
-    super()
-    this.state = {
-      textNow: '',
-    }
-  }
-
-  // 為了要綁定this值，用類似箭頭函式的寫法
-  // 專門設計給子女元件，送資料到父母元件
-  sendDataToMe = (value) => {
-    this.setState({ textNow: value })
-  }
-
-  render() {
-    return (
-      <>
-        <HelloWorldClass sendMe={this.sendDataToMe} />
-        <HelloWorldFunc sendMe={this.sendDataToMe} />
-        <HelloWorldText text={this.state.textNow} />
-      </>
-    )
-  }
+function App() {
+  return (
+    <>
+      <Button variant="primary">
+        <FaReact /> React v16
+      </Button>
+      <GiSwordman className="green-icon" />
+      <FaReact className="pink-icon" />
+    </>
+  )
 }
 
 export default App
